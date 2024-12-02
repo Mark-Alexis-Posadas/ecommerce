@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Section } from "../components/Section";
 
-export const Product: FC = () => {
+export const Products: FC = () => {
   return (
     <Section>
-      <h1>products</h1>
+      <h1>products page</h1>
     </Section>
   );
 };
