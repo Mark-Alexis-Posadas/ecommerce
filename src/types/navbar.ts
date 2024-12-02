@@ -1,7 +1,3 @@
-interface NavType {
-  item: { name: string };
-}
-
-export interface Type {
-  navbarData: NavType;
+export interface NavbarProps {
+  navbarData: { name: string; url: string }[];
 }
