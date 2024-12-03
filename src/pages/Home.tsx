@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Section } from "../components/Section";
 import { SubHeading } from "../components/SubHeading";
 import { useFetch } from "../hooks/useFetch";
+import { ProductCard } from "../components/ProductCard";
 
 export const Home: FC = () => {
   const { data: categories } = useFetch(
@@ -26,11 +27,7 @@ export const Home: FC = () => {
       <SubHeading>Featured Products</SubHeading>
       <div className="grid grid-cols-2 gap-4 p-10">
         {products.map((item) => (
-          <div key={uuidv4()}>
-            <img src={item.image} alt={item.title} />
-            <h2>{item.title}</h2>
-            <p>{item.description}</p>
-          </div>
+          <ProductCard item={item} />
         ))}
       </div>
       <SubHeading>Special Offers/Discounts</SubHeading>

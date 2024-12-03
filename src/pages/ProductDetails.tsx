@@ -4,7 +4,7 @@ import { Section } from "../components/Section";
 export const ProductDetails: FC = () => {
   return (
     <Section>
-      <h1>products</h1>
+      <h1>products Details</h1>
     </Section>
   );
 };

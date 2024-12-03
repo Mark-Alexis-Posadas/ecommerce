@@ -6,8 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 import { NavbarProps } from "../types/navbar";
 
 export const Navbar: FC<NavbarProps> = ({ navbarData }) => {
-  const [active, setActive] = useState(0);
-  const handleClick = (index) => {
+  const [active, setActive] = useState<number>(0);
+  const handleClick = (index: number) => {
     setActive(index);
   };
   return (
@@ -28,7 +28,9 @@ export const Navbar: FC<NavbarProps> = ({ navbarData }) => {
           </li>
         ))}
       </ul>
-      <FontAwesomeIcon icon={faCartArrowDown} />
+      <Link to="/cart">
+        <FontAwesomeIcon icon={faCartArrowDown} />
+      </Link>
     </nav>
   );
 };

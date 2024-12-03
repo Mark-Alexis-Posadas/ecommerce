@@ -1,6 +1,9 @@
 import { FC } from "react";
-
-export const ProductCard: FC = ({ item }) => {
+import { Product } from "../types/product";
+interface ProuductProp {
+  item: Product;
+}
+export const ProductCard: FC<ProuductProp> = ({ item }) => {
   return (
     <div className="shadow-custom-shadow flex flex-col items-center p-4 rounded">
       <img className="w-[100px]" src={item.image} alt={item.title} />

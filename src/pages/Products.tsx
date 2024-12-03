@@ -11,7 +11,7 @@ export const Products: FC = () => {
 
   return (
     <Section>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         {data.map((item) => (
           <ProductCard key={uuidv4()} item={item} />
         ))}

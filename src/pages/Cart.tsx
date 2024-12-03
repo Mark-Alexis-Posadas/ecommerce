@@ -4,7 +4,7 @@ import { Section } from "../components/Section";
 export const Cart: FC = () => {
   return (
     <Section>
-      <h1>products</h1>
+      <h1>cart page</h1>
     </Section>
   );
 };
