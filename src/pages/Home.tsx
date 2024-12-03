@@ -30,9 +30,18 @@ export const Home: FC = () => {
       </div>
       <SubHeading>Featured Products</SubHeading>
       <div className="grid grid-cols-2 gap-4 p-10">
-        {products.map((item) => (
-          <ProductCard key={uuidv4()} item={item} />
-        ))}
+        {products.map((item) => {
+          const { image, title, category, price } = item;
+          return (
+            <ProductCard
+              key={uuidv4()}
+              image={image}
+              title={title}
+              category={category}
+              price={price}
+            />
+          );
+        })}
       </div>
       <SubHeading>Special Offers/Discounts</SubHeading>
     </Section>

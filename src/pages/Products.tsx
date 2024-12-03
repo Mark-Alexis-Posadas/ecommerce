@@ -23,10 +23,19 @@ export const Products: FC = () => {
             ))}
           </ul>
         </aside>
-        <div className="grid grid-cols-5 gap-4">
-          {data.map((item) => (
-            <ProductCard key={uuidv4()} item={item} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {data.map((item) => {
+            const { image, title, category, price } = item;
+            return (
+              <ProductCard
+                key={uuidv4()}
+                image={image}
+                title={title}
+                category={category}
+                price={price}
+              />
+            );
+          })}
         </div>
       </div>
     </Section>
