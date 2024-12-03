@@ -6,15 +6,28 @@ import { ProductCard } from "../components/ProductCard";
 
 export const Products: FC = () => {
   const { data, loading } = useFetch("https://fakestoreapi.com/products");
+  const { data: categories } = useFetch(
+    "https://fakestoreapi.com/products/categories"
+  );
 
   if (loading) return <p>Loading...</p>;
 
   return (
     <Section>
-      <div className="grid grid-cols-5 gap-4">
-        {data.map((item) => (
-          <ProductCard key={uuidv4()} item={item} />
-        ))}
+      <div className="flex">
+        <aside>
+          <ul>
+            <li>All</li>
+            {categories.map((category) => (
+              <li key={uuidv4()}>{category}</li>
+            ))}
+          </ul>
+        </aside>
+        <div className="grid grid-cols-5 gap-4">
+          {data.map((item) => (
+            <ProductCard key={uuidv4()} item={item} />
+          ))}
+        </div>
       </div>
     </Section>
   );

@@ -6,12 +6,16 @@ import { useFetch } from "../hooks/useFetch";
 import { ProductCard } from "../components/ProductCard";
 
 export const Home: FC = () => {
-  const { data: categories } = useFetch(
+  const { data: categories, loading } = useFetch(
     "https://fakestoreapi.com/products/categories"
   );
   const { data: products } = useFetch(
     "https://fakestoreapi.com/products?limit=5"
   );
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <Section>
@@ -27,7 +31,7 @@ export const Home: FC = () => {
       <SubHeading>Featured Products</SubHeading>
       <div className="grid grid-cols-2 gap-4 p-10">
         {products.map((item) => (
-          <ProductCard item={item} />
+          <ProductCard key={uuidv4()} item={item} />
         ))}
       </div>
       <SubHeading>Special Offers/Discounts</SubHeading>
