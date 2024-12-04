@@ -27,7 +27,7 @@ export const Products: FC = () => {
         const activeIndex = categories.findIndex(
           (category) => category === categoryName
         );
-        console.log(activeIndex);
+        console.log(categories, categoryName);
 
         setActive(activeIndex);
       } else {
