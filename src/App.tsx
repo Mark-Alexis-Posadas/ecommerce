@@ -16,7 +16,11 @@ const App: FC = () => {
       <main>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/products/" element={<Products />} />
+          <Route
+            path="/products/category/:categoryName"
+            element={<Products />}
+          />
           <Route path="products/:id" element={<ProductDetails />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/contact" element={<Contact />} />

@@ -3,7 +3,7 @@ import {
   faArrowAltCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Banner } from "../types/banner";
 interface BannerProp {
@@ -11,11 +11,24 @@ interface BannerProp {
 }
 export const BannerCarousel: FC<BannerProp> = ({ bannerData }) => {
   const [active, setActive] = useState<number>(0);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActive((prev) => (prev + 1) % bannerData.length);
+  //   }, 3000);
+
+  //   return () => clearInterval(interval);
+  // }, [bannerData.length]);
+
   return (
     <div className="flex justify-center items-center">
-      <button>
+      <button
+        onClick={() =>
+          setActive((prev) => (prev === 0 ? bannerData.length - 1 : prev - 1))
+        }
+      >
         <FontAwesomeIcon icon={faArrowAltCircleLeft} />
       </button>
+
       {bannerData.map((item, index) => (
         <div
           className="relative flex items-center justify-center"
@@ -36,7 +49,10 @@ export const BannerCarousel: FC<BannerProp> = ({ bannerData }) => {
           </h1>
         </div>
       ))}
-      <button>
+
+      <button
+        onClick={() => setActive((prev) => prev + (1 % bannerData.length))}
+      >
         <FontAwesomeIcon icon={faArrowAltCircleRight} />
       </button>
     </div>

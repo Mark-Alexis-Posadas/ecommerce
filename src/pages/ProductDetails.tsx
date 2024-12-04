@@ -10,13 +10,15 @@ export const ProductDetails: FC<Product> = () => {
 
   return (
     <Section>
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-4 max-w-[900px] m-auto">
         <img src={data.image} alt={data.title} className="w-[300px]" />
         <div className="flex flex-col">
-          <h1 className="font-bold">{data.title}</h1>
-          <p>{data.description}</p>
-          <span>{data.category}</span>
-          <span>{data.price}</span>
+          <h1 className="font-bold text-xl mb-5">{data.title}</h1>
+          <b>{data.price}</b>
+          <p className="my-5 text-sm">{data.description}</p>
+          <span className="text-gray-600 uppercase text-sm">
+            categories: {data.category}
+          </span>
         </div>
       </div>
     </Section>

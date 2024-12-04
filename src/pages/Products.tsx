@@ -3,9 +3,11 @@ import { v4 as uuidv4 } from "uuid";
 import { Section } from "../components/Section";
 import { useFetch } from "../hooks/useFetch";
 import { ProductCard } from "../components/ProductCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const Products: FC = () => {
+  const navigate = useNavigate();
+  const { categoryName } = useParams<{ categoryName: string }>();
   const { data, loading } = useFetch("https://fakestoreapi.com/products");
   const { data: categories } = useFetch(
     "https://fakestoreapi.com/products/categories"
@@ -16,20 +18,36 @@ export const Products: FC = () => {
 
   useEffect(() => {
     if (data && data.length > 0) {
-      setProducts(data);
+      if (categoryName) {
+        const filteredProducts = data.filter(
+          (product) => product.category === categoryName
+        );
+        setProducts(filteredProducts);
+
+        const activeIndex = categories.findIndex(
+          (category) => category === categoryName
+        );
+        console.log(activeIndex);
+
+        setActive(activeIndex);
+      } else {
+        setProducts(data);
+      }
     }
-  }, [data]);
+  }, [data, categoryName, categories]);
 
   const handleFilterCategory = (categoryName: string, index: number) => {
     setActive(index);
 
     if (categoryName === "All") {
       setProducts(data);
+      navigate(`/products`);
     } else {
       const filteredProducts = data.filter(
         (product) => product.category === categoryName
       );
       setProducts(filteredProducts);
+      navigate(`/products/category/${categoryName}`);
     }
   };
 
@@ -37,18 +55,22 @@ export const Products: FC = () => {
 
   return (
     <Section>
-      <div className="flex">
-        <aside className="px-5">
-          <ul>
-            <li
-              key="all"
-              className={`${
-                active === -1 ? "text-green-600" : "text-gray-600"
-              } my-2 cursor-pointer`}
-              onClick={() => handleFilterCategory("All", -1)}
-            >
-              All
-            </li>
+      <div className="flex flex-col md:flex-row">
+        <aside className="p-0 md:px-5 mb-5 md:mb-0">
+          <ul className="flex md:flex-col md:gap-0 items-center md:items-start gap-4">
+            {categoryName ? (
+              ""
+            ) : (
+              <li
+                key="all"
+                className={`${
+                  active === -1 ? "text-green-600" : "text-gray-600"
+                } my-2 cursor-pointer`}
+                onClick={() => handleFilterCategory("All", -1)}
+              >
+                All
+              </li>
+            )}
 
             {categories.map((category, index) => (
               <li
