@@ -27,7 +27,6 @@ export const Products: FC = () => {
         const activeIndex = categories.findIndex(
           (category) => category === categoryName
         );
-        console.log(categories, categoryName);
 
         setActive(activeIndex);
       } else {
@@ -53,6 +52,7 @@ export const Products: FC = () => {
 
   const handleProductClick = (id: number) => {
     navigate(`/products/${id}`);
+    console.log(id);
   };
 
   if (loading) return <p>Loading...</p>;
@@ -94,9 +94,9 @@ export const Products: FC = () => {
             products.map((item) => {
               const { id, image, title, category, price } = item;
               return (
-                <Link
+                <div
                   key={uuidv4()}
-                  to={`${id}`}
+                  className="cursor-pointer"
                   onClick={() => handleProductClick(id)}
                 >
                   <ProductCard
@@ -105,7 +105,7 @@ export const Products: FC = () => {
                     category={category}
                     price={price}
                   />
-                </Link>
+                </div>
               );
             })}
         </div>
