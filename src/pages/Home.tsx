@@ -49,7 +49,7 @@ export const Home: FC = () => {
         ))}
       </div>
       <SubHeading>Featured Products</SubHeading>
-      <div className="grid grid-cols-2 gap-4 p-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-10">
         {products.map((item) => {
           const { id, image, title, category, price } = item;
           return (
