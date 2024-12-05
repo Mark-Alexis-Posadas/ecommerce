@@ -11,13 +11,13 @@ interface BannerProp {
 }
 export const BannerCarousel: FC<BannerProp> = ({ bannerData }) => {
   const [active, setActive] = useState<number>(0);
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setActive((prev) => (prev + 1) % bannerData.length);
-  //   }, 3000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % bannerData.length);
+    }, 3000);
 
-  //   return () => clearInterval(interval);
-  // }, [bannerData.length]);
+    return () => clearInterval(interval);
+  }, [bannerData.length]);
 
   return (
     <div className="flex justify-center items-center">
@@ -37,12 +37,12 @@ export const BannerCarousel: FC<BannerProp> = ({ bannerData }) => {
           <img
             src={item.image}
             className={`${
-              index === active ? "block" : "hidden"
+              index === active % bannerData.length ? "block" : "hidden"
             } w-full h-[400px] object-cover rounded px-10`}
           />
           <h1
             className={`${
-              index === active ? "block" : "hidden"
+              index === active % bannerData.length ? "block" : "hidden"
             } text-4xl text-white font-bold absolute`}
           >
             {item.name}

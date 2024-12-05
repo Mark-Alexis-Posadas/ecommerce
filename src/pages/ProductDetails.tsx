@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { Product } from "../types/product";
 
-export const ProductDetails: FC<Product> = () => {
+export const ProductDetails: FC = () => {
   const { id } = useParams();
-  const { data } = useFetch(`https://fakestoreapi.com/products/${id}`);
+  const { data } = useFetch<Product>(`https://fakestoreapi.com/products/${id}`);
 
   return (
     <Section>

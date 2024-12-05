@@ -51,6 +51,10 @@ export const Products: FC = () => {
     }
   };
 
+  const handleProductClick = (id: number) => {
+    navigate(`/products/${id}`);
+  };
+
   if (loading) return <p>Loading...</p>;
 
   return (
@@ -90,7 +94,11 @@ export const Products: FC = () => {
             products.map((item) => {
               const { id, image, title, category, price } = item;
               return (
-                <Link key={uuidv4()} to={`${id}`}>
+                <Link
+                  key={uuidv4()}
+                  to={`${id}`}
+                  onClick={() => handleProductClick(id)}
+                >
                   <ProductCard
                     image={image}
                     title={title}

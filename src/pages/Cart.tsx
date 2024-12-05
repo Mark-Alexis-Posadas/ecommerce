@@ -1,5 +1,12 @@
 import { FC } from "react";
 import { Section } from "../components/Section";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faMinus,
+  faPlus,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const Cart: FC = () => {
   return (
@@ -9,9 +16,9 @@ export const Cart: FC = () => {
         <li>Checkout</li>
         <li>Order Complete</li>
       </ul>
-      <div className="flex items-center gap-4">
+      <div className="flex gap-4">
         <div className="basis-2/3">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-4 border-b border-slate-300 py-2">
             <div>
               <h3 className="font-bold">Product</h3>
             </div>
@@ -25,7 +32,31 @@ export const Cart: FC = () => {
               <h3 className="font-bold">Subtotal</h3>
             </div>
           </div>
+          <div className="grid grid-cols-4 gap-4 border-b border-slate-300 py-2">
+            <div>
+              <FontAwesomeIcon icon={faTrash} />
+              <img src="" alt="" />
+              <h1>Mens Casual Premium Slim Fit T-Shirts</h1>
+            </div>
+            <div>
+              <b>$22.3</b>
+            </div>
+            <div>
+              <div className="flex items-center gap-3">
+                <button className="text-white rounded bg-blue-600 p-2">
+                  <FontAwesomeIcon icon={faMinus} />
+                </button>
+                <button className="text-white rounded bg-blue-600 p-2">
+                  <FontAwesomeIcon icon={faPlus} />
+                </button>
+              </div>
+            </div>
+            <div>
+              <b>$22.3</b>
+            </div>
+          </div>
         </div>
+
         <div className="basis-2/3">
           <h3 className="font-bold">Product</h3>
           <ul>
@@ -42,6 +73,10 @@ export const Cart: FC = () => {
               <b>$100</b>
             </li>
           </ul>
+          <button className="flex items-center justify-center gap-3 bg-blue-600 text-white rounded p-2 w-full">
+            Proceed to checkout
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
         </div>
       </div>
     </Section>
