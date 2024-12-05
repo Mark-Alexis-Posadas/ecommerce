@@ -11,14 +11,14 @@ export const Navbar: FC<NavbarProps> = ({ navbarData }) => {
     setActive(index);
   };
   return (
-    <nav className="flex items-center p-4 justify-between">
+    <nav className="flex items-center p-5 justify-between shadow-md bg-slate-50">
       <h1>logo</h1>
       <ul className="flex items-center gap-4">
         {navbarData.map((item, index) => (
           <li key={uuidv4()}>
             <Link
               to={`/${item.url}`}
-              className={`${
+              className={`capitalize ${
                 active === index ? "text-green-600" : "text-gray-600"
               }`}
               onClick={() => handleClick(index)}

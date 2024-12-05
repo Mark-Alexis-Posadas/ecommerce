@@ -29,26 +29,42 @@ export const BannerCarousel: FC<BannerProp> = ({ bannerData }) => {
         <FontAwesomeIcon icon={faArrowAltCircleLeft} />
       </button>
 
-      {bannerData.map((item, index) => (
-        <div
-          className="relative flex items-center justify-center"
-          key={uuidv4()}
-        >
-          <img
-            src={item.image}
-            className={`${
-              index === active % bannerData.length ? "block" : "hidden"
-            } w-full h-[400px] object-cover rounded px-10`}
-          />
-          <h1
-            className={`${
-              index === active % bannerData.length ? "block" : "hidden"
-            } text-4xl text-white font-bold absolute`}
+      <div className="flex flex-col items-center w-full">
+        {bannerData.map((item, index) => (
+          <div
+            className="relative flex items-center justify-center w-full"
+            key={uuidv4()}
           >
-            {item.name}
-          </h1>
-        </div>
-      ))}
+            <img
+              src={item.image}
+              className={`${
+                index === active % bannerData.length ? "block" : "hidden"
+              } w-full h-[400px] object-cover rounded px-10`}
+            />
+            <h1
+              className={`${
+                index === active % bannerData.length ? "block" : "hidden"
+              } text-4xl text-white font-bold absolute`}
+            >
+              {item.name}
+            </h1>
+          </div>
+        ))}
+
+        <ul className="flex items-center gap-4 mt-4">
+          {bannerData.map((_, index) => (
+            <li
+              onClick={() => setActive(index)}
+              className={`w-3 h-3 cursor-pointer rounded-full ${
+                index === active % bannerData.length
+                  ? "bg-green-600"
+                  : "bg-slate-300"
+              }`}
+              key={uuidv4()}
+            ></li>
+          ))}
+        </ul>
+      </div>
 
       <button
         onClick={() => setActive((prev) => prev + (1 % bannerData.length))}
