@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { navbarData } from "./data/navbar";
@@ -10,13 +10,18 @@ import { Products } from "./pages/Products";
 import { Cart } from "./pages/Cart";
 import { ProductDetails } from "./pages/ProductDetails";
 import { CartModal } from "./components/CartModal";
+import { useComponentVisibile } from "./hooks/useComponentVisible";
 const App: FC = () => {
-  const [isToggleCart, setIsToggleCart] = useState<boolean>(false);
+  const { isComponentVisible, setIsComponentVisible, ref } =
+    useComponentVisibile(false);
   return (
     <div className="relative">
-      {isToggleCart && <CartModal />}
+      {isComponentVisible && <CartModal cartRef={ref} />}
 
-      <Navbar navbarData={navbarData} />
+      <Navbar
+        navbarData={navbarData}
+        setIsComponentVisible={setIsComponentVisible}
+      />
       <main>
         <Routes>
           <Route index element={<Home />} />

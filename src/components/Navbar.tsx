@@ -5,11 +5,16 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { NavbarProps } from "../types/navbar";
 
-export const Navbar: FC<NavbarProps> = ({ navbarData }) => {
+export const Navbar: FC<NavbarProps> = ({
+  navbarData,
+  setIsComponentVisible,
+}) => {
   const [active, setActive] = useState<number>(0);
+
   const handleClick = (index: number) => {
     setActive(index);
   };
+
   return (
     <nav className="flex items-center p-5 justify-between shadow-md bg-slate-50">
       <h1>logo</h1>
@@ -28,9 +33,9 @@ export const Navbar: FC<NavbarProps> = ({ navbarData }) => {
           </li>
         ))}
       </ul>
-      <Link to="/cart">
+      <button onClick={() => setIsComponentVisible(true)}>
         <FontAwesomeIcon icon={faCartArrowDown} />
-      </Link>
+      </button>
     </nav>
   );
 };
