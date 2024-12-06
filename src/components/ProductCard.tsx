@@ -4,14 +4,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export const ProductCard: FC<Product> = ({
+  id,
   image,
   title,
   description,
   category,
   price,
+  handleProductClick,
 }) => {
   return (
-    <div className="shadow-custom-shadow flex flex-col items-center justify-between p-4 rounded col-span-1 relative group hover:bg-gray-100">
+    <div
+      onClick={() => handleProductClick(id)}
+      className="cursor-pointer shadow-custom-shadow flex flex-col items-center justify-between p-4 rounded col-span-1 relative group hover:bg-gray-100"
+    >
       <img
         className="w-[100px] h-[100px] object-contain"
         src={image}

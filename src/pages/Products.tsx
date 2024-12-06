@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Section } from "../components/Section";
 import { useFetch } from "../hooks/useFetch";
 import { ProductCard } from "../components/ProductCard";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Container } from "../components/Container";
 
 export const Products: FC = () => {
@@ -96,18 +96,15 @@ export const Products: FC = () => {
               products.map((item) => {
                 const { id, image, title, category, price } = item;
                 return (
-                  <div
+                  <ProductCard
+                    id={id}
+                    handleProductClick={handleProductClick}
                     key={uuidv4()}
-                    className="cursor-pointer"
-                    onClick={() => handleProductClick(id)}
-                  >
-                    <ProductCard
-                      image={image}
-                      title={title}
-                      category={category}
-                      price={price}
-                    />
-                  </div>
+                    image={image}
+                    title={title}
+                    category={category}
+                    price={price}
+                  />
                 );
               })}
           </div>
