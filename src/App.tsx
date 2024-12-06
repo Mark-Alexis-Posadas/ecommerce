@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { navbarData } from "./data/navbar";
@@ -9,9 +9,13 @@ import { Footer } from "./components/Footer";
 import { Products } from "./pages/Products";
 import { Cart } from "./pages/Cart";
 import { ProductDetails } from "./pages/ProductDetails";
+import { CartModal } from "./components/CartModal";
 const App: FC = () => {
+  const [isToggleCart, setIsToggleCart] = useState<boolean>(false);
   return (
-    <>
+    <div className="relative">
+      {isToggleCart && <CartModal />}
+
       <Navbar navbarData={navbarData} />
       <main>
         <Routes>
@@ -28,7 +32,7 @@ const App: FC = () => {
         </Routes>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
