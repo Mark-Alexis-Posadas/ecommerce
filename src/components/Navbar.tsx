@@ -8,6 +8,7 @@ import { NavbarProps } from "../types/navbar";
 export const Navbar: FC<NavbarProps> = ({
   navbarData,
   setIsComponentVisible,
+  cartCount,
 }) => {
   const [active, setActive] = useState<number>(0);
 
@@ -33,8 +34,12 @@ export const Navbar: FC<NavbarProps> = ({
           </li>
         ))}
       </ul>
-      <button onClick={() => setIsComponentVisible(true)}>
+      <button
+        onClick={() => setIsComponentVisible(true)}
+        className="flex items-center gap-2"
+      >
         <FontAwesomeIcon icon={faCartArrowDown} />
+        <span>{cartCount}</span>
       </button>
     </nav>
   );

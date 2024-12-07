@@ -1,6 +1,11 @@
 import { FC } from "react";
-
-export const CartModal: FC = ({ cartRef }) => {
+import { v4 as uuidv4 } from "uuid";
+export const CartModal: FC = ({ cartItem, setCart, setCartCount, cartRef }) => {
+  const handleDeleteCartItem = (id: number) => {
+    const removeCartItem = cartItem.filter((item) => item.id !== id);
+    setCart(removeCartItem);
+    setCartCount((prev) => prev - 1);
+  };
   return (
     <div className="bg-[rgba(0,0,0,0.4)] fixed w-full h-screen overflow-hidden z-20">
       <div
@@ -10,6 +15,24 @@ export const CartModal: FC = ({ cartRef }) => {
         <div className="flex items-center justify-between border-b border-slate-3 pb-3">
           <h2 className="font-bold text-md">Cart</h2>
           <button>Clear cart</button>
+        </div>
+        <div className="overflow-y-auto h-full py-10">
+          {cartItem.length === 0 && <p>Shop now</p>}
+          {cartItem.map((item) => (
+            <div
+              className="flex items-center justify-between mb-3"
+              key={uuidv4()}
+            >
+              <figure className="flex flex-wrap">
+                <img className="w-[50px]" src={item.image} alt={item.title} />
+                <figcaption>{item.title}</figcaption>
+                <figcaption>{item.price}</figcaption>
+              </figure>
+              <button onClick={() => handleDeleteCartItem(item.id)}>
+                delete
+              </button>
+            </div>
+          ))}
         </div>
 
         <div className="flex items-center justify-between">

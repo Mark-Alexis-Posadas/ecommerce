@@ -65,6 +65,7 @@ export const Home: FC = () => {
               return (
                 <Link to={`products/${id}`} key={uuidv4()}>
                   <ProductCard
+                    key={uuidv4()}
                     image={image}
                     title={title}
                     category={category}

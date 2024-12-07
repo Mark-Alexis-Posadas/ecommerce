@@ -1,8 +1,4 @@
-interface T {
-  id: number;
-  handleProductClick: (id: number) => void;
-}
-export interface Product extends T {
+export interface Product {
   image: string;
   title: string;
   description?: string;

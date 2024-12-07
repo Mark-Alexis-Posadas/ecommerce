@@ -5,8 +5,12 @@ import { useFetch } from "../hooks/useFetch";
 import { ProductCard } from "../components/ProductCard";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container } from "../components/Container";
+import { Product } from "../types/product";
 
-export const Products: FC = () => {
+interface AddToCart {
+  handleAddToCart: (product: Product) => void;
+}
+export const Products: FC<AddToCart> = ({ handleAddToCart }) => {
   const navigate = useNavigate();
   const { categoryName } = useParams<{ categoryName: string }>();
   const { data, loading } = useFetch("https://fakestoreapi.com/products");
@@ -53,7 +57,6 @@ export const Products: FC = () => {
 
   const handleProductClick = (id: number) => {
     navigate(`/products/${id}`);
-    console.log(id);
   };
 
   if (loading) return <p>Loading...</p>;
@@ -97,6 +100,8 @@ export const Products: FC = () => {
                 const { id, image, title, category, price } = item;
                 return (
                   <ProductCard
+                    item={item}
+                    handleAddToCart={handleAddToCart}
                     id={id}
                     handleProductClick={handleProductClick}
                     key={uuidv4()}
