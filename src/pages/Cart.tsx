@@ -10,8 +10,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "../components/Container";
 
+interface T {
+  image: string;
+  title: string;
+  price: number;
+  quantity: number;
+}
 interface Item {
-  cartItem: string[];
+  cartItem: T[];
 }
 
 export const Cart: FC<Item> = ({ cartItem }) => {
@@ -64,13 +70,14 @@ export const Cart: FC<Item> = ({ cartItem }) => {
                         </div>
                       </th>
                       <td className="px-6 py-4">
-                        <b>${item.price}</b>
+                        <b>{item.price}</b>
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           <button className="text-white rounded bg-blue-600 p-2">
                             <FontAwesomeIcon icon={faMinus} />
                           </button>
+                          <span>{item.quantity}</span>
                           <button className="text-white rounded bg-blue-600 p-2">
                             <FontAwesomeIcon icon={faPlus} />
                           </button>

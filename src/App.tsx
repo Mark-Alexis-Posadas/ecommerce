@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { navbarData } from "./data/navbar";
 import { Home } from "./pages/Home";
@@ -13,10 +13,15 @@ import { CartModal } from "./components/CartModal";
 import { useComponentVisibile } from "./hooks/useComponentVisible";
 
 const App: FC = () => {
+  const navigate = useNavigate();
   const { isComponentVisible, setIsComponentVisible, ref } =
     useComponentVisibile(false);
   const [cart, setCart] = useState([]);
   const [cartCount, setCartCount] = useState<number | null>(null);
+
+  const handleProductClick = (id: number) => {
+    navigate(`/products/${id}`);
+  };
 
   const handleAddToCart = (product) => {
     setCartCount((prevCount) => (prevCount ?? 0) + 1);
@@ -47,14 +52,27 @@ const App: FC = () => {
       />
       <main>
         <Routes>
-          <Route index element={<Home />} />
+          <Route
+            index
+            element={
+              <Home
+                handleAddToCart={handleAddToCart}
+                handleProductClick={handleProductClick}
+              />
+            }
+          />
           <Route
             path="/products/"
-            element={<Products handleAddToCart={handleAddToCart} />}
+            element={
+              <Products
+                handleAddToCart={handleAddToCart}
+                handleProductClick={handleProductClick}
+              />
+            }
           />
           <Route
             path="/products/category/:categoryName"
-            element={<Products handleAddToCart={handleAddToCart} />}
+            element={<Products />}
           />
           <Route path="products/:id" element={<ProductDetails />} />
           <Route path="/about-us" element={<About />} />

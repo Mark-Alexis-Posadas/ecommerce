@@ -8,7 +8,7 @@ import { BannerCarousel } from "../components/BannerCarousel";
 import { bannerData } from "../data/banner";
 import { Link } from "react-router-dom";
 import { Container } from "../components/Container";
-export const Home: FC = () => {
+export const Home: FC = ({ handleAddToCart, handleProductClick }) => {
   const { data: categories, loading } = useFetch(
     "https://fakestoreapi.com/products/categories"
   );
@@ -63,15 +63,16 @@ export const Home: FC = () => {
             {products.map((item) => {
               const { id, image, title, category, price } = item;
               return (
-                <Link to={`products/${id}`} key={uuidv4()}>
-                  <ProductCard
-                    key={uuidv4()}
-                    image={image}
-                    title={title}
-                    category={category}
-                    price={price}
-                  />
-                </Link>
+                <ProductCard
+                  item={item}
+                  handleAddToCart={handleAddToCart}
+                  handleProductClick={handleProductClick}
+                  key={uuidv4()}
+                  image={image}
+                  title={title}
+                  category={category}
+                  price={price}
+                />
               );
             })}
           </div>

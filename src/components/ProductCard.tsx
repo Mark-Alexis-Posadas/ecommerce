@@ -21,6 +21,7 @@ export const ProductCard: FC<T> = ({
   handleProductClick,
   handleAddToCart,
 }) => {
+  console.log(item);
   return (
     <div className="relative shadow-custom-shadow  p-4 rounded col-span-1 group hover:bg-gray-100">
       <div

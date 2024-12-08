@@ -3,15 +3,17 @@ import { v4 as uuidv4 } from "uuid";
 import { Section } from "../components/Section";
 import { useFetch } from "../hooks/useFetch";
 import { ProductCard } from "../components/ProductCard";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Container } from "../components/Container";
 import { Product } from "../types/product";
 
 interface AddToCart {
-  handleAddToCart: (product: Product) => void;
+  handleAddToCart: () => void;
 }
-export const Products: FC<AddToCart> = ({ handleAddToCart }) => {
-  const navigate = useNavigate();
+export const Products: FC<AddToCart> = ({
+  handleAddToCart,
+  handleProductClick,
+}) => {
   const { categoryName } = useParams<{ categoryName: string }>();
   const { data, loading } = useFetch("https://fakestoreapi.com/products");
   const { data: categories } = useFetch(
@@ -53,10 +55,6 @@ export const Products: FC<AddToCart> = ({ handleAddToCart }) => {
       setProducts(filteredProducts);
       navigate(`/products/category/${categoryName}`);
     }
-  };
-
-  const handleProductClick = (id: number) => {
-    navigate(`/products/${id}`);
   };
 
   if (loading) return <p>Loading...</p>;
