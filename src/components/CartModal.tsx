@@ -12,7 +12,7 @@ export const CartModal: FC<CartModalType> = ({
   const handleDeleteCartItem = (id: number) => {
     const removeCartItem = cartItem.filter((item) => item.id !== id);
     setCart(removeCartItem);
-    setCartCount((prev) => prev - 1);
+    setCartCount((prev) => (prev ?? 0) - 1);
   };
   return (
     <div className="bg-[rgba(0,0,0,0.4)] fixed w-full h-screen overflow-hidden z-20">

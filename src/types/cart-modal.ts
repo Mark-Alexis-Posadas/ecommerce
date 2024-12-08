@@ -1,6 +1,22 @@
 export interface CartModalType {
-  cartItem: { image: string; title: string; price: string };
-  setCart: boolean;
-  setCartCount: boolean;
-  cartRef: string;
+  cartItem: Array<{
+    id: number;
+    image: string;
+    title: string;
+    price: number;
+    quantity: number;
+  }>;
+  setCart: React.Dispatch<
+    React.SetStateAction<
+      Array<{
+        id: number;
+        image: string;
+        title: string;
+        price: number;
+        quantity: number;
+      }>
+    >
+  >;
+  setCartCount: React.Dispatch<React.SetStateAction<number | null>>;
+  cartRef: React.RefObject<HTMLDivElement>;
 }

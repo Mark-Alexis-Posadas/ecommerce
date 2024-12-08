@@ -10,7 +10,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "../components/Container";
 
-export const Cart: FC = ({ cartItem }) => {
+interface Item {
+  cartItem: string[];
+}
+
+export const Cart: FC<Item> = ({ cartItem }) => {
   return (
     <Section>
       <Container>

@@ -19,8 +19,14 @@ const App: FC = () => {
   const [cartCount, setCartCount] = useState<number | null>(null);
 
   const handleAddToCart = (product) => {
-    setCart([...cart, product]);
-    setCartCount((prevCount) => prevCount + 1);
+    setCartCount((prevCount) => (prevCount ?? 0) + 1);
+    const existingItemIndex = cart.findIndex((item) => item.id === product.id);
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].quantity += 1;
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
   };
 
   return (
