@@ -53,7 +53,7 @@ const App: FC = () => {
           <Route path="products/:id" element={<ProductDetails />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart cartItem={cart} />} />
         </Routes>
       </main>
       <Footer />

@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Section } from "../components/Section";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { v4 as uuidv4 } from "uuid";
 import {
   faArrowRight,
   faMinus,
@@ -9,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "../components/Container";
 
-export const Cart: FC = () => {
+export const Cart: FC = ({ cartItem }) => {
   return (
     <Section>
       <Container>
@@ -39,34 +40,43 @@ export const Cart: FC = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  {cartItem.map((item) => (
+                    <tr
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                      key={uuidv4()}
                     >
-                      <div className="flex items-center gap-4">
-                        <FontAwesomeIcon icon={faTrash} />
-                        <img src="" alt="" />
-                        <h1>Mens Casual Premium Slim Fit T-Shirts</h1>
-                      </div>
-                    </th>
-                    <td className="px-6 py-4">
-                      <b>$22.3</b>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
-                        <button className="text-white rounded bg-blue-600 p-2">
-                          <FontAwesomeIcon icon={faMinus} />
-                        </button>
-                        <button className="text-white rounded bg-blue-600 p-2">
-                          <FontAwesomeIcon icon={faPlus} />
-                        </button>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <b>$22.3</b>
-                    </td>
-                  </tr>
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        <div className="flex items-center gap-4">
+                          <FontAwesomeIcon icon={faTrash} />
+                          <img
+                            className="w-14 h-14 object-contain"
+                            src={item.image}
+                            alt={item.title}
+                          />
+                          <h1>{item.title}</h1>
+                        </div>
+                      </th>
+                      <td className="px-6 py-4">
+                        <b>${item.price}</b>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <button className="text-white rounded bg-blue-600 p-2">
+                            <FontAwesomeIcon icon={faMinus} />
+                          </button>
+                          <button className="text-white rounded bg-blue-600 p-2">
+                            <FontAwesomeIcon icon={faPlus} />
+                          </button>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <b>${item.price}</b>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

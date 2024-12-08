@@ -1,6 +1,14 @@
 import { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
-export const CartModal: FC = ({ cartItem, setCart, setCartCount, cartRef }) => {
+import { CartModalType } from "../types/cart-modal";
+import { Link } from "react-router-dom";
+
+export const CartModal: FC<CartModalType> = ({
+  cartItem,
+  setCart,
+  setCartCount,
+  cartRef,
+}) => {
   const handleDeleteCartItem = (id: number) => {
     const removeCartItem = cartItem.filter((item) => item.id !== id);
     setCart(removeCartItem);
@@ -36,7 +44,10 @@ export const CartModal: FC = ({ cartItem, setCart, setCartCount, cartRef }) => {
         </div>
 
         <div className="flex items-center justify-between">
-          <button>View Cart</button>
+          <Link to="/cart">
+            <button>View Cart</button>
+          </Link>
+
           <button>checkout</button>
         </div>
       </div>
