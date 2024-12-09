@@ -2,14 +2,12 @@ import { FC } from "react";
 import { Product } from "../types/product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Quantity } from "./Quantity";
 
 interface T extends Product {
   id?: number | undefined;
-  handleProductClick?: (id: number | undefined) => void;
+  handleProductClick: (id: number) => void;
   item: Product;
   handleAddToCart: (product: Product) => void;
-  quantity: number;
 }
 
 export const ProductCard: FC<T> = ({
@@ -20,7 +18,6 @@ export const ProductCard: FC<T> = ({
   description,
   category,
   price,
-  quantity,
   handleProductClick,
   handleAddToCart,
 }) => {
@@ -43,7 +40,6 @@ export const ProductCard: FC<T> = ({
         </div>
       </div>
       <div className="absolute top-1/2 left-1/2">
-        <Quantity quantity={quantity} />
         <button
           className="text-white p-2 rounded-full w-[50px] h-[50px] bg-blue-600 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           onClick={() => handleAddToCart(item)}

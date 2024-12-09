@@ -11,7 +11,7 @@ import { Container } from "../components/Container";
 
 interface HomeT {
   handleAddToCart: () => void;
-  handleProductClick: () => void;
+  handleProductClick: (id: number) => void;
 }
 export const Home: FC<HomeT> = ({ handleAddToCart, handleProductClick }) => {
   const { data: categories, loading } = useFetch(
@@ -66,9 +66,10 @@ export const Home: FC<HomeT> = ({ handleAddToCart, handleProductClick }) => {
           <SubHeading>Featured Products</SubHeading>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {products.map((item) => {
-              const { image, title, category, price } = item;
+              const { id, image, title, category, price } = item;
               return (
                 <ProductCard
+                  id={id}
                   item={item}
                   handleAddToCart={handleAddToCart}
                   handleProductClick={handleProductClick}

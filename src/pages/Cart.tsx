@@ -16,7 +16,22 @@ interface Item {
   cartItem: T[];
 }
 
-export const Cart: FC<Item> = ({ cartItem }) => {
+export const Cart: FC<Item> = ({ cartItem, setCart }) => {
+  const incrementQuantity = (id: number) => {
+    const updatedCart = cartItem.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCart(updatedCart);
+  };
+
+  const decrementQuantity = (id) => {
+    const updatedCart = cartItem.map((item) =>
+      item.id === id ? { ...item, quantity: item.quantity - 1 } : null
+    );
+
+    setCart(updatedCart);
+  };
+
   return (
     <Section>
       <Container>
@@ -69,7 +84,12 @@ export const Cart: FC<Item> = ({ cartItem }) => {
                         <b>{item.price}</b>
                       </td>
                       <td className="px-6 py-4">
-                        <Quantity quantity={item.quantity} />
+                        <Quantity
+                          incrementQuantity={incrementQuantity}
+                          decrementQuantity={decrementQuantity}
+                          quantity={item.quantity}
+                          itemId={item.id}
+                        />
                       </td>
                       <td className="px-6 py-4">
                         <b>${item.price}</b>

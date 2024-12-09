@@ -73,12 +73,20 @@ const App: FC = () => {
           />
           <Route
             path="/products/category/:categoryName"
-            element={<Products handleAddToCart={handleAddToCart} />}
+            element={
+              <Products
+                handleAddToCart={handleAddToCart}
+                handleProductClick={handleProductClick}
+              />
+            }
           />
           <Route path="products/:id" element={<ProductDetails />} />
           <Route path="/about-us" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/cart" element={<Cart cartItem={cart} />} />
+          <Route
+            path="/cart"
+            element={<Cart cartItem={cart} setCart={setCart} />}
+          />
         </Routes>
       </main>
       <Footer />

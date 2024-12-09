@@ -101,13 +101,13 @@ export const Products: FC<AddToCart> = ({
                   <ProductCard
                     item={item}
                     handleAddToCart={handleAddToCart}
-                    id={id}
                     handleProductClick={handleProductClick}
                     key={uuidv4()}
                     image={image}
                     title={title}
                     category={category}
                     price={price}
+                    id={id}
                   />
                 );
               })}
