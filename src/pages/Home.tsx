@@ -8,7 +8,12 @@ import { BannerCarousel } from "../components/BannerCarousel";
 import { bannerData } from "../data/banner";
 import { Link } from "react-router-dom";
 import { Container } from "../components/Container";
-export const Home: FC = ({ handleAddToCart, handleProductClick }) => {
+
+interface HomeT {
+  handleAddToCart: () => void;
+  handleProductClick: () => void;
+}
+export const Home: FC<HomeT> = ({ handleAddToCart, handleProductClick }) => {
   const { data: categories, loading } = useFetch(
     "https://fakestoreapi.com/products/categories"
   );
@@ -61,7 +66,7 @@ export const Home: FC = ({ handleAddToCart, handleProductClick }) => {
           <SubHeading>Featured Products</SubHeading>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {products.map((item) => {
-              const { id, image, title, category, price } = item;
+              const { image, title, category, price } = item;
               return (
                 <ProductCard
                   item={item}

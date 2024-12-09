@@ -30,15 +30,19 @@ export const CartModal: FC<CartModalType> = ({
           {cartItem.length === 0 && <p>Shop now</p>}
           {cartItem.map((item) => (
             <div
-              className="flex items-center justify-between mb-3"
+              className="flex items-center justify-between mb-5"
               key={uuidv4()}
             >
-              <figure className="flex items-center flex-wrap">
-                <img className="w-[50px]" src={item.image} alt={item.title} />
+              <figure className="flex items-center">
+                <img
+                  className="w-12 h-12 object-contain"
+                  src={item.image}
+                  alt={item.title}
+                />
                 <div className="flex flex-col px-4">
-                  <figcaption>{item.title}</figcaption>
+                  <figcaption className="text-sm">{item.title}</figcaption>
                   <figcaption className="text-gray-600 text-xs flex items-center">
-                    {item.quantity} x - {item.price}
+                    {item.quantity} x - ${item.price}
                   </figcaption>
                 </div>
               </figure>

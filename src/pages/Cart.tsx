@@ -2,13 +2,9 @@ import { FC } from "react";
 import { Section } from "../components/Section";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { v4 as uuidv4 } from "uuid";
-import {
-  faArrowRight,
-  faMinus,
-  faPlus,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "../components/Container";
+import { Quantity } from "../components/Quantity";
 
 interface T {
   image: string;
@@ -73,15 +69,7 @@ export const Cart: FC<Item> = ({ cartItem }) => {
                         <b>{item.price}</b>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
-                          <button className="text-white rounded bg-blue-600 p-2">
-                            <FontAwesomeIcon icon={faMinus} />
-                          </button>
-                          <span>{item.quantity}</span>
-                          <button className="text-white rounded bg-blue-600 p-2">
-                            <FontAwesomeIcon icon={faPlus} />
-                          </button>
-                        </div>
+                        <Quantity quantity={item.quantity} />
                       </td>
                       <td className="px-6 py-4">
                         <b>${item.price}</b>
