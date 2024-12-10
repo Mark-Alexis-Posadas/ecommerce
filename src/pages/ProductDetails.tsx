@@ -2,15 +2,13 @@ import { FC, useEffect, useState } from "react";
 import { Section } from "../components/Section";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
-import { Product } from "../types/product";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const ProductDetails: FC = ({ handleAddToCart }) => {
   const { id } = useParams();
-  const { data } = useFetch<Product>(`https://fakestoreapi.com/products/${id}`);
+  const { data } = useFetch(`https://fakestoreapi.com/products/${id}`);
   const [product, setProduct] = useState([]);
-  // const [quantityValue, setQuantityValue] = useState("");
 
   useEffect(() => {
     if (data) {
