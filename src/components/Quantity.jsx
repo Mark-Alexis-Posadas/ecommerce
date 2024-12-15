@@ -1,11 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FC } from "react";
 
-interface Q {
-  quantity: number;
-}
-export const Quantity: FC<Q> = ({
+export const Quantity = ({
   incrementQuantity,
   decrementQuantity,
   quantity,

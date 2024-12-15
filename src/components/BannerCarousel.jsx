@@ -5,12 +5,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { Banner } from "../types/banner";
-interface BannerProp {
-  bannerData: Banner[];
-}
-export const BannerCarousel: FC<BannerProp> = ({ bannerData }) => {
-  const [active, setActive] = useState<number>(0);
+
+export const BannerCarousel = ({ bannerData }) => {
+  const [active, setActive] = useState < number > 0;
   useEffect(() => {
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % bannerData.length);

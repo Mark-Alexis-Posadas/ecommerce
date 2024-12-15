@@ -1,18 +1,13 @@
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { NavbarProps } from "../types/navbar";
 
-export const Navbar: FC<NavbarProps> = ({
-  navbarData,
-  setIsComponentVisible,
-  cartCount,
-}) => {
-  const [active, setActive] = useState<number>(0);
+export const Navbar = ({ navbarData, setIsComponentVisible, cartCount }) => {
+  const [active, setActive] = useState(0);
 
-  const handleClick = (index: number) => {
+  const handleClick = (index) => {
     setActive(index);
   };
 

@@ -1,16 +1,8 @@
-import { FC } from "react";
 import { Product } from "../types/product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-interface T extends Product {
-  id?: number | undefined;
-  handleProductClick: (id: number) => void;
-  item: Product;
-  handleAddToCart: (product: Product) => void;
-}
-
-export const ProductCard: FC<T> = ({
+export const ProductCard = ({
   item,
   id,
   image,

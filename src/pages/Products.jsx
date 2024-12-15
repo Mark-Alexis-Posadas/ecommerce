@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Section } from "../components/Section";
 import { useFetch } from "../hooks/useFetch";
@@ -6,15 +6,8 @@ import { ProductCard } from "../components/ProductCard";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container } from "../components/Container";
 
-interface AddToCart {
-  handleAddToCart: (product: any) => void;
-  handleProductClick: (id: number) => void;
-}
-export const Products: FC<AddToCart> = ({
-  handleAddToCart,
-  handleProductClick,
-}) => {
-  const { categoryName } = useParams<{ categoryName: string }>();
+export const Products = ({ handleAddToCart, handleProductClick }) => {
+  const { categoryName } = useParams();
   const { data, loading } = useFetch("https://fakestoreapi.com/products");
   const { data: categories } = useFetch(
     "https://fakestoreapi.com/products/categories"
@@ -22,7 +15,7 @@ export const Products: FC<AddToCart> = ({
   const navigate = useNavigate();
 
   const [products, setProducts] = useState(data);
-  const [active, setActive] = useState<number>(-1);
+  const [active, setActive] = useState(-1);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -43,7 +36,7 @@ export const Products: FC<AddToCart> = ({
     }
   }, [data, categoryName, categories]);
 
-  const handleFilterCategory = (categoryName: string, index: number) => {
+  const handleFilterCategory = (categoryName, index) => {
     setActive(index);
 
     if (categoryName === "All") {

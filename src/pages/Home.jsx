@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Section } from "../components/Section";
 import { SubHeading } from "../components/SubHeading";
@@ -9,11 +8,7 @@ import { bannerData } from "../data/banner";
 import { Link } from "react-router-dom";
 import { Container } from "../components/Container";
 
-interface HomeT {
-  handleAddToCart: (product: any) => void;
-  handleProductClick: (id: number) => void;
-}
-export const Home: FC<HomeT> = ({ handleAddToCart, handleProductClick }) => {
+export const Home = ({ handleAddToCart, handleProductClick }) => {
   const { data: categories, loading } = useFetch(
     "https://fakestoreapi.com/products/categories"
   );

@@ -1,17 +1,11 @@
-import { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { CartModalType } from "../types/cart-modal";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export const CartModal: FC<CartModalType> = ({
-  cartItem,
-  setCart,
-  setCartCount,
-  cartRef,
-}) => {
-  const handleDeleteCartItem = (id: number) => {
+export const CartModal = ({ cartItem, setCart, setCartCount, cartRef }) => {
+  const handleDeleteCartItem = (id) => {
     const removeCartItem = cartItem.filter((item) => item.id !== id);
     setCart(removeCartItem);
     setCartCount((prev) => (prev ?? 0) - 1);

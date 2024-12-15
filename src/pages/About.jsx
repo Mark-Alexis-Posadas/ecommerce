@@ -1,7 +1,6 @@
-import { FC } from "react";
 import { Section } from "../components/Section";
 
-export const About: FC = () => {
+export const About = () => {
   return (
     <Section>
       <h1>About us</h1>

@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Section } from "../components/Section";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { v4 as uuidv4 } from "uuid";
@@ -6,18 +5,8 @@ import { faArrowRight, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "../components/Container";
 import { Quantity } from "../components/Quantity";
 
-interface T {
-  image: string;
-  title: string;
-  price: number;
-  quantity: number;
-}
-interface Item {
-  cartItem: T[];
-}
-
-export const Cart: FC<Item> = ({ cartItem, setCart }) => {
-  const incrementQuantity = (id: number) => {
+export const Cart = ({ cartItem, setCart }) => {
+  const incrementQuantity = (id) => {
     const updatedCart = cartItem.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
