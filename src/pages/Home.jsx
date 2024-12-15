@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Container } from "../components/Container";
 
 interface HomeT {
-  handleAddToCart: () => void;
+  handleAddToCart: (product: any) => void;
   handleProductClick: (id: number) => void;
 }
 export const Home: FC<HomeT> = ({ handleAddToCart, handleProductClick }) => {

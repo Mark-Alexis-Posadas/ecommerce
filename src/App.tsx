@@ -16,17 +16,19 @@ const App: FC = () => {
   const navigate = useNavigate();
   const { isComponentVisible, setIsComponentVisible, ref } =
     useComponentVisibile(false);
-  const [cart, setCart] = useState<string[]>([]);
+  const [cart, setCart] = useState<string[] | any>([]);
   const [cartCount, setCartCount] = useState<number | null>(null);
 
   const handleProductClick = (id: number) => {
     navigate(`/products/${id}`);
   };
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product: any) => {
     setCartCount((prevCount) => (prevCount ?? 0) + 1);
     setIsComponentVisible(true);
-    const existingItemIndex = cart.findIndex((item) => item.id === product.id);
+    const existingItemIndex = cart.findIndex(
+      (item: any) => item.id === product.id
+    );
     if (existingItemIndex !== -1) {
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].quantity += 1;

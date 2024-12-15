@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-export const ProductDetails: FC = ({ handleAddToCart }) => {
+interface HandleCart {
+  handleAddToCart: (product: any) => void;
+}
+export const ProductDetails: FC<HandleCart> = ({ handleAddToCart }) => {
   const { id } = useParams();
   const { data } = useFetch(`https://fakestoreapi.com/products/${id}`);
   const [product, setProduct] = useState([]);

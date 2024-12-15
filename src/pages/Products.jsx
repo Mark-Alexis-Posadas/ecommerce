@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Container } from "../components/Container";
 
 interface AddToCart {
-  handleAddToCart: () => void;
+  handleAddToCart: (product: any) => void;
   handleProductClick: (id: number) => void;
 }
 export const Products: FC<AddToCart> = ({
