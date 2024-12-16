@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import { navbarData } from "./data/navbar";
@@ -12,23 +12,21 @@ import { ProductDetails } from "./pages/ProductDetails";
 import { CartModal } from "./components/CartModal";
 import { useComponentVisibile } from "./hooks/useComponentVisible";
 
-const App: FC = () => {
+const App = () => {
   const navigate = useNavigate();
   const { isComponentVisible, setIsComponentVisible, ref } =
     useComponentVisibile(false);
-  const [cart, setCart] = useState<string[] | any>([]);
-  const [cartCount, setCartCount] = useState<number | null>(null);
+  const [cart, setCart] = useState([]);
+  const [cartCount, setCartCount] = useState(null);
 
-  const handleProductClick = (id: number) => {
+  const handleProductClick = (id) => {
     navigate(`/products/${id}`);
   };
 
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (product) => {
     setCartCount((prevCount) => (prevCount ?? 0) + 1);
     setIsComponentVisible(true);
-    const existingItemIndex = cart.findIndex(
-      (item: any) => item.id === product.id
-    );
+    const existingItemIndex = cart.findIndex((item) => item.id === product.id);
     if (existingItemIndex !== -1) {
       const updatedCart = [...cart];
       updatedCart[existingItemIndex].quantity += 1;
