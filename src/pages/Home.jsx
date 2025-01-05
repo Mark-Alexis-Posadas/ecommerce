@@ -29,7 +29,7 @@ export const Home = ({ handleAddToCart, handleProductClick }) => {
       </Section>
       <Section>
         <Container>
-          <SubHeading>Cataegories</SubHeading>
+          <SubHeading>Categories</SubHeading>
           <div className="grid grid-cols-2 gap-4">
             {categories.map((category, index) => (
               <Link to={`products/category/${category}`} key={uuidv4()}>
