@@ -1,8 +1,4 @@
-interface Type {
-  name: string;
-  url: string;
-}
-export const navbarData: Type[] = [
+export const navbarData = [
   { name: "home", url: "" },
   { name: "products", url: "products" },
   { name: "about us", url: "about-us" },
