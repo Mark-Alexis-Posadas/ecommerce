@@ -3,11 +3,11 @@ import {
   faArrowAltCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export const BannerCarousel = ({ bannerData }) => {
-  const [active, setActive] = useState < number > 0;
+  const [active, setActive] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % bannerData.length);

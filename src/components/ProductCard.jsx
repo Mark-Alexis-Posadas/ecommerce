@@ -16,7 +16,7 @@ export const ProductCard = ({
     <div className="relative shadow-custom-shadow  p-4 rounded col-span-1 group hover:bg-gray-100">
       <div
         onClick={() => handleProductClick(id)}
-        className="cursor-pointerflex flex-col items-center justify-between"
+        className="cursor-pointer flex flex-col items-center justify-between"
       >
         <img
           className="w-[100px] h-[100px] object-contain"
